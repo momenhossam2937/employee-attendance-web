@@ -1,0 +1,122 @@
+<section class="vh-100" >
+    <div class="container h-100">
+        <h1 class="mb-4 d-flex justify-content-center title">Create Employee Attendance</h1>
+
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-xl-9">
+  
+      
+           <form class="createForm" #empAttendanceForm="ngForm">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body">
+  
+              <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                  <h6 class="mb-0">Employee</h6>
+                </div>
+                <div class="col-md-9 pe-5">
+                    <p-dropdown 
+                    [options]="employees" 
+                    [(ngModel)]="employeeAttendanceRequest.eMPID" 
+                    placeholder="Select a Employee" 
+                    optionLabel="name"
+                    name="employeeId"
+                    [showClear]="true"
+                    optionValue="id"
+                    #employeeId="ngModel"
+                    ></p-dropdown>
+            
+                </div>
+              </div>
+   
+              <hr class="mx-n3">
+              <div class="row align-items-center py-3">
+                <div class="col-md-3 ps-5">
+                  <h6 class="mb-0">EVETLGUID</h6>
+                </div>
+                <div class="col-md-9 pe-5">
+                  <input
+                  type="number"
+                  class="form-control"
+                  placeholder="example@example.com"
+                  name="eVETLGUID"
+                  required
+                  [(ngModel)]="employeeAttendanceRequest.eVETLGUID"
+                  #eVETLGUIDtxt="ngModel"
+                />
+    
+                <span
+                  class="help-block text-danger"
+                  *ngIf="isFormSubmitted || eVETLGUIDtxt.touched && !eVETLGUIDtxt?.valid"
+                >
+                  <span *ngIf="eVETLGUIDtxt?.errors?.['required']">
+                    EVETLGUID required
+                  </span>
+             
+                </span>
+  
+                </div>
+              </div>
+  
+              <hr class="mx-n3">
+              <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                  <h6 class="mb-0">DEVUID</h6>
+                </div>
+                <div class="col-md-9 pe-5">
+                  <input
+                  type="number"
+                  class="form-control"
+                  placeholder="Enter DEVUID"
+                  [(ngModel)]="employeeAttendanceRequest.dEVUID"
+                  name="phoneNumber"
+                  #dEVUIDtxt="ngModel"
+                  required
+                  min="0"
+                />
+    
+                <span
+                  class="help-block text-danger"
+                  *ngIf="isFormSubmitted || dEVUIDtxt.touched && !dEVUIDtxt?.valid"
+                >
+                  <span *ngIf="isFormSubmitted || dEVUIDtxt?.errors?.['required']">
+                    DEVUID required
+                  </span>
+                </span>
+                </div>
+              </div> 
+
+              <hr class="mx-n3">
+
+              <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                  <h6 class="mb-0">Date</h6>
+                </div>
+                <div class="col-md-9 pe-5">
+                    <p-calendar [(ngModel)]="employeeAttendanceRequest.DEVDT2" [showTime]="true" [showSeconds]="true" inputId="time" name="date" ></p-calendar>
+    
+               
+                </div>
+              </div> 
+
+
+
+
+
+
+            
+           
+            <hr class="mx-n3">
+              <div class="px-5 py-4">
+                <button type="submit" class="btn btn-primary btn-lg" (click)="saveEmployeeAttendance(empAttendanceForm)">
+                    Save
+                </button>
+              </div>
+  
+            </div>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </section>

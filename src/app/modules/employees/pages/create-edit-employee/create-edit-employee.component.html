@@ -1,0 +1,116 @@
+<section class="vh-100" >
+    <div class="container h-100">
+        <h1 class="mb-4 d-flex justify-content-center title" *ngIf="!editMode">Create Employee</h1>
+        <h1 class="mb-4 d-flex justify-content-center title" *ngIf="editMode">Update Employee</h1>
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-xl-9">
+  
+      
+           <form class="createForm" #empForm="ngForm">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body">
+  
+              <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                  <h6 class="mb-0">Full name</h6>
+                </div>
+                <div class="col-md-9 pe-5">
+                    <input
+                    type="text"
+                    class="form-control form-control-lg"
+                    placeholder="Enter User Name"
+                    name="name"
+                    required
+                    pattern="\w+"
+                    [(ngModel)]="addEditEmployeeModel.name"
+                    #name="ngModel"
+                  />
+                
+                  <span
+                  class="help-block text-danger"
+                  *ngIf="isFormSubmitted || name.touched && !name?.valid"
+                >
+                  <span *ngIf="isFormSubmitted || name?.errors?.['required']">
+                     Name required
+                  </span>
+             
+                </span>
+                </div>
+              </div>
+  
+              <hr class="mx-n3">
+              <div class="row align-items-center py-3">
+                <div class="col-md-3 ps-5">
+                  <h6 class="mb-0">Email address</h6>
+                </div>
+                <div class="col-md-9 pe-5">
+                  <input
+                  type="text"
+                  class="form-control"
+                  placeholder="example@example.com"
+                  name="email"
+                  required
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                  [(ngModel)]="addEditEmployeeModel.email"
+                  #email="ngModel"
+                />
+    
+                <span
+                  class="help-block text-danger"
+                  *ngIf="isFormSubmitted || email.touched && !email?.valid"
+                >
+                  <span *ngIf="email?.errors?.['required']">
+                    Email required
+                  </span>
+    
+                  <span *ngIf=" email?.errors?.['pattern']">
+                    Enter a valid Email
+                  </span>
+                </span>
+  
+                </div>
+              </div>
+  
+              <hr class="mx-n3">
+              <div class="row align-items-center pt-4 pb-3">
+                <div class="col-md-3 ps-5">
+                  <h6 class="mb-0">Phone Number</h6>
+                </div>
+                <div class="col-md-9 pe-5">
+                  <input
+                  type="number"
+                  class="form-control"
+                  placeholder="Enter Phone Number"
+                  [(ngModel)]="addEditEmployeeModel.phone"
+                  name="phoneNumber"
+                  #phoneNumber="ngModel"
+                  required
+                  min="0"
+                />
+    
+                <span
+                  class="help-block text-danger"
+                  *ngIf="isFormSubmitted || phoneNumber.touched && !phoneNumber?.valid"
+                >
+                  <span *ngIf="isFormSubmitted || phoneNumber?.errors?.['required']">
+                    Phone Number required
+                  </span>
+                </span>
+                </div>
+              </div>
+  
+              <hr class="mx-n3">
+  
+              <div class="px-5 py-4">
+                <button type="submit" class="btn btn-primary btn-lg" (click)="saveEmployee(empForm)">
+                    Save
+                </button>
+              </div>
+  
+            </div>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </section>
